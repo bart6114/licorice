@@ -6,6 +6,8 @@ output:
 
 [![Build Status](https://travis-ci.org/Bart6114/licorice.svg?branch=master)](https://travis-ci.org/Bart6114/licorice)
 
+[![Coverage Status](https://coveralls.io/repos/Bart6114/licorice/badge.svg?branch=master)](https://coveralls.io/r/Bart6114/licorice?branch=master)
+
 ```licorice``` is an R package that eases the plotting of _Likert-like_ data. It has been heavily inspired by the ```likert``` [package](https://github.com/jbryer/likert) from Bryer and Speerschneider.
 
 ```licorice``` makes use of the ```ggplot2``` plotting engine in such a way that interference by the ```licorice``` package in terms of theming is kept to a minimum (the graphs diplayed belowed are themed using the ```ggthemr``` package). When using the ```licorice``` function a ```ggplot2``` object is returned which can then be added upon to your liking. 

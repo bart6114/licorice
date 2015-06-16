@@ -1,4 +1,3 @@
-
 #' plot the likert scale results using centered bar plot
 #'
 #' @param data the dataset
