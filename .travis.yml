@@ -4,14 +4,14 @@ sudo: required
 
 env:
   global:
-  - CRAN: http://cran.rstudio.com
-- R_BUILD_ARGS="--no-manual"
-- R_CHECK_ARGS="--no-manual"
+    - CRAN: http://cran.rstudio.com
+    - R_BUILD_ARGS="--no-manual"
+    - R_CHECK_ARGS="--no-manual"
 
 notifications:
   email:
-  on_success: change
-on_failure: change
+    on_success: change
+    on_failure: change
 
 r_github_packages:
   - jimhester/covr
