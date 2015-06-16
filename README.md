@@ -1,6 +1,5 @@
 [![Build
 Status](https://travis-ci.org/Bart6114/licorice.svg?branch=master)](https://travis-ci.org/Bart6114/licorice)
-
 [![Coverage
 Status](https://coveralls.io/repos/Bart6114/licorice/badge.svg?branch=master)](https://coveralls.io/r/Bart6114/licorice?branch=master)
 
@@ -93,20 +92,20 @@ response type.
 
     licorice(pisatest, answers_order = my_order, middle_pos = 2, type = "center", sort=T)
 
-![](http://i.imgur.com/zzpaIKv.png)
+![](http://i.imgur.com/hkUPFI0.png)
 
 One can also fill the vertical space using a filled plot (also notice
 the `sort` argument).
 
     licorice(pisatest, answers_order = my_order, type = "fill", sort=TRUE)
 
-![](http://i.imgur.com/CHWwjkl.png)
+![](http://i.imgur.com/vrvVEps.png)
 
 We can also have a look at the count data.
 
     licorice(pisatest, answers_order = my_order, type = "count")
 
-![](http://i.imgur.com/5IJ7SHd.png)
+![](http://i.imgur.com/oJlIcPj.png)
 
 You can also show plots in combination with each other using existing
 functionality (the `gridExtra` library).
@@ -122,7 +121,7 @@ functionality (the `gridExtra` library).
       widths = c(3/4,1/4)
     )
 
-![](http://i.imgur.com/agd1XHF.png)
+![](http://i.imgur.com/iATGAXU.png)
 
 Groups (as the countries in the graph above) are shown automatically
 when a `group` column is available in the data set. For example, when
@@ -138,4 +137,4 @@ present), no group is shown;
     licorice(gap_fixed, middle_pos = 4, sort=TRUE) +
       theme(legend.position="right")
 
-![](http://i.imgur.com/kBrygib.png)
+![](http://i.imgur.com/TLNhDwg.png)

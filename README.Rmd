@@ -5,7 +5,6 @@ output:
 ---
 
 [![Build Status](https://travis-ci.org/Bart6114/licorice.svg?branch=master)](https://travis-ci.org/Bart6114/licorice)
-
 [![Coverage Status](https://coveralls.io/repos/Bart6114/licorice/badge.svg?branch=master)](https://coveralls.io/r/Bart6114/licorice?branch=master)
 
 ```licorice``` is an R package that eases the plotting of _Likert-like_ data. It has been heavily inspired by the ```likert``` [package](https://github.com/jbryer/likert) from Bryer and Speerschneider.
