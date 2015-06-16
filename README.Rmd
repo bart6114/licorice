@@ -1,0 +1,101 @@
+---
+title: "licorice"
+output: 
+  html_document
+---
+```licorice``` is an R package that eases the plotting of _Likert-like_ data. It has been heavily inspired by the ```likert``` [package](https://github.com/jbryer/likert) from Bryer and Speerschneider.
+
+```licorice``` makes use of the ```ggplot2``` plotting engine in such a way that interference by the ```licorice``` package in terms of theming is kept to a minimum (the graphs diplayed belowed are themed using the ```ggthemr``` package). When using the ```licorice``` function a ```ggplot2``` object is returned which can then be added upon to your liking. 
+
+```{r setup, echo=FALSE, message=FALSE,warning=FALSE}
+library(knitr)
+opts_knit$set(upload.fun = imgur_upload, base.url = NULL)
+
+library(ggthemr)
+ggthemr("flat")
+```
+
+## Installation
+
+For now, no CRAN version exists and you'll have to install from GitHub using ```devtools```.
+
+```{r, eval=FALSE}
+devtools::install_github("Bart6114/licorice")
+```
+
+## Preparing the data
+
+The ```licorice``` function expects a given structure of data. The example ```pisatest``` dataset can be used as a reference.
+
+A minimal requirement is the presence of the ```question```, ```response``` and ```count``` column. Additionally a ```group``` column can be added.
+
+```{r, message=FALSE}
+library(licorice)
+
+head(pisatest)
+```
+
+For example the ```gapsample``` dataset is not structured as it should be. Some simple preparations make it suited for ```licorice```.
+
+```{r}
+head(gapsample)
+
+library(dplyr)
+gap_fixed<-
+  gapsample %>%
+  group_by(question, response) %>%
+  summarise(count = n())
+
+head(gap_fixed)
+
+```
+
+
+## Plotting the data
+Three main plots are available. First a centered plot is shown; here the junction between two categories (which can be controlled by the ```middle_pos``` parameter) is centered. If the factor levels of the reponse variable are not set correctly, they can be specified using the ```answer_order``` parameter. If a ```middle_pos``` value of e.g. 2 is given, the results are centered at the junction between the second and third response type.
+
+```{r, fig.height=10}
+my_order<-
+  c("Strongly disagree","Disagree", "Agree", "Strongly agree")
+
+
+licorice(pisatest, answers_order = my_order, middle_pos = 2, type = "center", sort=T)
+```
+
+One can also fill the vertical space using a filled plot (also notice the ```sort``` argument).
+
+```{r, fig.height=10}
+licorice(pisatest, answers_order = my_order, type = "fill", sort=TRUE)
+```
+
+We can also have a look at the count data.
+
+
+```{r, fig.height=10}
+licorice(pisatest, answers_order = my_order, type = "count")
+```
+
+You can also show plots in combination with each other using existing functionality (the ```gridExtra``` library).
+
+```{r, warning=FALSE, fig.height=10, fig.width=8, message=FALSE}
+library(gridExtra)
+
+grid.arrange(
+  licorice(pisatest, my_order, middle_pos = 2.5, type = "center", sort=TRUE),
+  licorice(pisatest, my_order, type = "count", sort=TRUE) +
+    theme(axis.text.y=element_blank()) +
+    scale_fill_discrete(""),
+  ncol = 2,
+  widths = c(3/4,1/4)
+)
+```
+
+Groups (as the countries in the graph above) are shown automatically when a ```group``` column is available in the data set. For example, when using the generated ```gap_fixed``` data set (where not ```group``` column is present), no group is shown;
+
+```{r, fig.width=8}
+levels(gap_fixed$response)
+
+licorice(gap_fixed, middle_pos = 4, sort=TRUE) +
+  theme(legend.position="right")
+```
+
