@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/Bart6114/licorice.svg?branch=master)](https://travis-ci.org/Bart6114/licorice)
+
 `licorice` is an R package that eases the plotting of *Likert-like*
 data. It has been heavily inspired by the `likert`
 [package](https://github.com/jbryer/likert) from Bryer and
@@ -85,22 +88,22 @@ response type.
       c("Strongly disagree","Disagree", "Agree", "Strongly agree")
 
 
-    licorice(pisatest, answers_order = my_order, middle_pos = 2, type = "center", sort=TRUE)
+    licorice(pisatest, answers_order = my_order, middle_pos = 2, type = "center", sort=T)
 
-![](http://i.imgur.com/MEkAH2d.png)
+![](http://i.imgur.com/sCXTFDn.png)
 
 One can also fill the vertical space using a filled plot (also notice
 the `sort` argument).
 
     licorice(pisatest, answers_order = my_order, type = "fill", sort=TRUE)
 
-![](http://i.imgur.com/oYjfUqP.png)
+![](http://i.imgur.com/0xBrEoG.png)
 
 We can also have a look at the count data.
 
     licorice(pisatest, answers_order = my_order, type = "count")
 
-![](http://i.imgur.com/lhfhnvS.png)
+![](http://i.imgur.com/8IwrNLQ.png)
 
 You can also show plots in combination with each other using existing
 functionality (the `gridExtra` library).
@@ -116,7 +119,7 @@ functionality (the `gridExtra` library).
       widths = c(3/4,1/4)
     )
 
-![](http://i.imgur.com/ik5fPB7.png)
+![](http://i.imgur.com/l3wyGTv.png)
 
 Groups (as the countries in the graph above) are shown automatically
 when a `group` column is available in the data set. For example, when
@@ -132,4 +135,4 @@ present), no group is shown;
     licorice(gap_fixed, middle_pos = 4, sort=TRUE) +
       theme(legend.position="right")
 
-![](http://i.imgur.com/IxwQCg9.png)
+![](http://i.imgur.com/bcvWcpF.png)
