@@ -1,6 +1,6 @@
 Package: licorice
 Type: Package
-Title: Plot Likert-like data
+Title: Plot Likert-Like Data
 Version: 0.1
 Date: 2015-06-16
 Author: Bart Smeets
@@ -8,5 +8,5 @@ Maintainer: Bart Smeets <bartsmeets86@gmail.com>
 Description: Uses the ggplot2 plotting engine to create plots from Likert-like data.
 License: MIT
 LazyData: TRUE
-Depends: ggplot2, dplyr, tidyr
+Depends: ggplot2, dplyr, tidyr, scales
 Suggests: testthat
