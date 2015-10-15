@@ -2,7 +2,6 @@
 #'
 #' @param data the dataset
 #' @param sort whether to sort results, defaults to TRUE
-#' @param short_reversed should sort be reversed?
 #' @param middle_pos a number corresponding to the location at which to center the plot
 #' @param type the type of graph to create (center, fill, count)
 #' @param strwrap_width at what position in the question to place newline characters
@@ -11,9 +10,9 @@
 #' @import tidyr
 #' @import scales
 #' @export
-licorice<-function(data, answers_order = levels(as.factor(data$response)), sort = FALSE, sort_reversed = FALSE, middle_pos = 2.5, type=c("center", "fill", "count"), strwrap_width = 25){
+licorice<-function(data, answers_order = levels(as.factor(data$response)), sort = FALSE, middle_pos = 2.5, type=c("center", "fill", "count"), strwrap_width = 25){
 
-  data_transformed<-transform_data(data, answers_order, sort, sort_reversed, middle_pos, strwrap_width)
+  data_transformed<-transform_data(data, answers_order, sort, middle_pos, strwrap_width)
 
   if(type[1] == "fill"){
     plot_obj <-
@@ -37,9 +36,8 @@ licorice<-function(data, answers_order = levels(as.factor(data$response)), sort 
 #' @param data dataset
 #' @param answers_order character vector with answers in order
 #' @param sort sort data?
-#' @param sort_reversed reversed?
 #' @param middle_pos middle position of the factor var
-transform_data<-function(data, answers_order, sort=TRUE, sort_reversed=FALSE, middle_pos=2.5, strwrap_width=25){
+transform_data<-function(data, answers_order, sort=TRUE, middle_pos=2.5, strwrap_width=25){
   if("group" %in% colnames(data)){
     group_by_args <- c("group", "question")
   } else {
@@ -48,13 +46,12 @@ transform_data<-function(data, answers_order, sort=TRUE, sort_reversed=FALSE, mi
   data <-
     data %>%
     ungroup %>%
-    mutate(question = strwrap(question, strwrap_width) %>% as.factor)
-
+    mutate(question = strwrap(question, strwrap_width) %>% as.factor,
+           response = factor(response, levels=answers_order)) %>%
+    sort_data(sort, group_by_args)
 
   results_data_main<-
     data %>%
-    mutate(response = factor(response, levels=answers_order)) %>%
-    arrange_(.dots = c(group_by_args, "response")) %>%
     group_by_(.dots = group_by_args) %>%
     filter(!is.na(response)) %>%
     mutate(response_relative = count / sum(count),
@@ -80,17 +77,6 @@ transform_data<-function(data, answers_order, sort=TRUE, sort_reversed=FALSE, mi
                 ungroup, by = group_by_args)
 
 
-  if(sort == TRUE){
-    results_data_main <-
-      results_data_main %>%
-      mutate(question = reorder(question, y_max_centered))
-
-    results_data_percentages <-
-      results_data_percentages %>%
-      mutate(question = reorder(question, pos))
-
-  }
-
   results_data_counts <-
     results_data_percentages %>%
     gather(type, value, completed, missing)
@@ -100,6 +86,21 @@ transform_data<-function(data, answers_order, sort=TRUE, sort_reversed=FALSE, mi
     main = results_data_main %>% filter(!is.na(response)),
     counts = results_data_counts
   )
+
+}
+
+#' internal sort func
+#'
+#' @param data
+#' @param sort
+sort_data<-function(data, sort, group_by_args){
+
+  if(sort){
+    data %>%
+      arrange_(.dots = c(group_by_args, "response"))
+  } else {
+    data
+  }
 
 }
 

@@ -4,8 +4,8 @@
 \alias{transform_data}
 \title{Transforms data to be used by licorice function}
 \usage{
-transform_data(data, answers_order, sort = TRUE, sort_reversed = FALSE,
-  middle_pos = 2.5, strwrap_width = 25)
+transform_data(data, answers_order, sort = TRUE, middle_pos = 2.5,
+  strwrap_width = 25)
 }
 \arguments{
 \item{data}{dataset}
@@ -13,8 +13,6 @@ transform_data(data, answers_order, sort = TRUE, sort_reversed = FALSE,
 \item{answers_order}{character vector with answers in order}
 
 \item{sort}{sort data?}
-
-\item{sort_reversed}{reversed?}
 
 \item{middle_pos}{middle position of the factor var}
 }

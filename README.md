@@ -33,6 +33,8 @@ A minimal requirement is the presence of the `question`, `response` and
 
     library(licorice)
 
+    ## Warning: replacing previous import by 'tidyr::%>%' when loading 'licorice'
+
     head(pisatest)
 
     ##   question response         group count
@@ -65,9 +67,10 @@ Some simple preparations make it suited for `licorice`.
     head(gap_fixed)
 
     ## Source: local data frame [6 x 3]
-    ## Groups: question
+    ## Groups: question [1]
     ## 
     ##        question          response count
+    ##          (fctr)            (fctr) (int)
     ## 1 Financial Aid Strongly disagree     7
     ## 2 Financial Aid          Disagree     3
     ## 3 Financial Aid Disagree somewhat     2
@@ -92,20 +95,20 @@ response type.
 
     licorice(pisatest, answers_order = my_order, middle_pos = 2, type = "center", sort=T)
 
-![](http://i.imgur.com/hkUPFI0.png)
+![](http://i.imgur.com/l7HpVZC.png)
 
 One can also fill the vertical space using a filled plot (also notice
 the `sort` argument).
 
     licorice(pisatest, answers_order = my_order, type = "fill", sort=TRUE)
 
-![](http://i.imgur.com/vrvVEps.png)
+![](http://i.imgur.com/GmFECzn.png)
 
 We can also have a look at the count data.
 
     licorice(pisatest, answers_order = my_order, type = "count")
 
-![](http://i.imgur.com/oJlIcPj.png)
+![](http://i.imgur.com/OMR23Fj.png)
 
 You can also show plots in combination with each other using existing
 functionality (the `gridExtra` library).
@@ -121,7 +124,7 @@ functionality (the `gridExtra` library).
       widths = c(3/4,1/4)
     )
 
-![](http://i.imgur.com/iATGAXU.png)
+![](http://i.imgur.com/4Utiq6Q.png)
 
 Groups (as the countries in the graph above) are shown automatically
 when a `group` column is available in the data set. For example, when
@@ -137,4 +140,4 @@ present), no group is shown;
     licorice(gap_fixed, middle_pos = 4, sort=TRUE) +
       theme(legend.position="right")
 
-![](http://i.imgur.com/TLNhDwg.png)
+![](http://i.imgur.com/FKxp1NA.png)

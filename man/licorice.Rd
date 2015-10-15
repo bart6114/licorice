@@ -5,8 +5,8 @@
 \title{plot the likert scale results using centered bar plot}
 \usage{
 licorice(data, answers_order = levels(as.factor(data$response)),
-  sort = FALSE, sort_reversed = FALSE, middle_pos = 2.5,
-  type = c("center", "fill", "count"), strwrap_width = 25)
+  sort = FALSE, middle_pos = 2.5, type = c("center", "fill", "count"),
+  strwrap_width = 25)
 }
 \arguments{
 \item{data}{the dataset}
@@ -18,8 +18,6 @@ licorice(data, answers_order = levels(as.factor(data$response)),
 \item{type}{the type of graph to create (center, fill, count)}
 
 \item{strwrap_width}{at what position in the question to place newline characters}
-
-\item{short_reversed}{should sort be reversed?}
 }
 \description{
 plot the likert scale results using centered bar plot
