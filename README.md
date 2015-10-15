@@ -95,20 +95,20 @@ response type.
 
     licorice(pisatest, answers_order = my_order, middle_pos = 2, type = "center", sort=T)
 
-![](http://i.imgur.com/l7HpVZC.png)
+![](http://i.imgur.com/rwczmKY.png)
 
 One can also fill the vertical space using a filled plot (also notice
 the `sort` argument).
 
     licorice(pisatest, answers_order = my_order, type = "fill", sort=TRUE)
 
-![](http://i.imgur.com/GmFECzn.png)
+![](http://i.imgur.com/fMxdMmh.png)
 
 We can also have a look at the count data.
 
     licorice(pisatest, answers_order = my_order, type = "count")
 
-![](http://i.imgur.com/OMR23Fj.png)
+![](http://i.imgur.com/cwVJufP.png)
 
 You can also show plots in combination with each other using existing
 functionality (the `gridExtra` library).
@@ -124,7 +124,7 @@ functionality (the `gridExtra` library).
       widths = c(3/4,1/4)
     )
 
-![](http://i.imgur.com/4Utiq6Q.png)
+![](http://i.imgur.com/EeCWGt6.png)
 
 Groups (as the countries in the graph above) are shown automatically
 when a `group` column is available in the data set. For example, when
@@ -140,4 +140,4 @@ present), no group is shown;
     licorice(gap_fixed, middle_pos = 4, sort=TRUE) +
       theme(legend.position="right")
 
-![](http://i.imgur.com/FKxp1NA.png)
+![](http://i.imgur.com/3LDe4rL.png)
